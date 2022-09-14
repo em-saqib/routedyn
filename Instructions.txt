@@ -1,0 +1,54 @@
+
+Run POX:
+./pox.py forwarding.l2_learning openflow.discovery host_tracker openflow.spanning_tree --no-flood --hold-down misc.project-module
+
+Show flow rules:
+sh ovs-ofctl dump-flows s1
+
+Show flows:
+dpctl dump-flows
+dpctl dump-flows | wc
+
+
+iperf -s -p 9200 -i 1 > h3.txt 
+iperf -c 10.0.0.3 -t 15 -p 9200 > h1.txt 
+
+
+info('*** iperf h1 - h4 echange UDP \n')
+h4.cmd ('iperf -s -u -p 3000 -t 30 -i 2 > server_H4.txt &')
+h1.cmd ('iperf -c 10.0.0.4 -u -b 4m -p 3000 -t 10 -i 2 > client_H1.txt &')
+
+info('*** iperf h2 - h5 echange UDP \n')
+h4.cmd ('iperf -s -u -p 3000 -t 30 -i 2 > server_H5.txt &')
+h1.cmd ('iperf -c 10.0.0.5 -u -b 3m -p 3000 -t 10 -i 2 > client_H2.txt &')
+
+info('*** iperf h3 - h6 echange UDP \n')
+h4.cmd ('iperf -s -u -p 3000 -t 30 -i 2 > server_H6.txt &')
+h1.cmd ('iperf -c 10.0.0.6 -u -b 2m -p 3000 -t 10 -i 2 > client_H3.txt &')
+
+
+Flow Collection Sample:
+
+from copy import deepcopy
+a = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
+temp = []
+flow = []
+for p in a:
+  temp.append(p)
+flow = deepcopy(temp)
+
+for i in flow:
+  print (i)
+
+
+
+
+
+Python for Algorithm:
+
+Nested List:
+L = [[1, 2, 3],[4, 2, 6],[7, 8, 2]]   
+for list in L:
+    for number in list:
+      if number == 2:
+        print(number, end=' ')
